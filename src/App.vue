@@ -1,7 +1,20 @@
 <template>
-  <router-view />
+  <component :is="layout">
+  </component>
 </template>
 
-<script lang="ts" setup>
-  //
+<script setup>
+import { computed } from "vue";
+import { useRoute } from "vue-router";
+import MainLayout from "@/layouts/MainLayout.vue";
+
+const route = useRoute();
+const layout = computed(() => {
+  const layouts = {
+    MainLayout
+  }
+
+  return layouts[route?.meta?.layout];
+});
+
 </script>
